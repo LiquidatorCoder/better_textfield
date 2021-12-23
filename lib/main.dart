@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:better_textfield/widgets/text_field.dart' as btf;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       title: 'Better Textfield',
       darkTheme: ThemeData(
         primarySwatch: Colors.indigo,
+        textTheme: GoogleFonts.nunitoTextTheme(),
       ),
       themeMode: ThemeMode.dark,
       home: const HomePage(),
@@ -54,13 +56,14 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               const Spacer(flex: 3),
-              const TextField(),
+              const btf.TextField(),
               const Spacer(flex: 4),
             ],
           ),
         ),
       ),
       floatingActionButton: Container(
+        margin: const EdgeInsets.only(bottom: 16, right: 16),
         width: 44,
         height: 44,
         decoration: BoxDecoration(
