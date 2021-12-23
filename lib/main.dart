@@ -1,9 +1,10 @@
 import 'dart:developer';
 
-import 'package:better_textfield/widgets/text_field.dart' as btf;
+import 'package:better_textfield/widgets/better_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+// Basic App for Textfield demonstration
 void main() {
   runApp(const MyApp());
 }
@@ -20,13 +21,15 @@ class MyApp extends StatelessWidget {
         textTheme: GoogleFonts.nunitoTextTheme(),
       ),
       themeMode: ThemeMode.dark,
-      home: const HomePage(),
+      home: HomePage(),
     );
   }
 }
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+//  with TextSelectionDelegate {
+  HomePage({Key? key}) : super(key: key);
+  final TextEditingController _textController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -56,7 +59,24 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               const Spacer(flex: 3),
-              const btf.TextField(),
+              // Reference Textfield
+              DecoratedBox(
+                decoration: BoxDecoration(color: Colors.red.withOpacity(0.5)),
+                child: TextField(
+                  controller: _textController,
+                ),
+              ),
+              const SizedBox(height: 32),
+              // This is the main better_textfield
+              // So to approach this problem, I had two possible solutions in mind:
+              // 1. Use a TextField from Flutter and update it with cursor fixes and other fixes
+              // 2. Create a new Textfield from scratch and use it as a replacement for the old one
+              // I chose the second one because it's easier to implement and I don't want to have to deal with the TextField from Flutter
+              // which does contains a lot of other bugs and complex documentation.
+              DecoratedBox(
+                decoration: BoxDecoration(color: Colors.red.withOpacity(0.5)),
+                child: BetterTextfield(controller: _textController),
+              ),
               const Spacer(flex: 4),
             ],
           ),
