@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:better_textfield/constants/global_singleton.dart';
 import 'package:better_textfield/widgets/b_text_field.dart' as btf;
 import 'package:better_textfield/widgets/b_text_selection_controls.dart';
 import 'package:better_textfield/widgets/magnifier.dart';
@@ -14,30 +15,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  GlobalKey stickyKey = GlobalKey();
   late TextEditingController _textController;
-  Offset pos = Offset.zero;
-  double height = 0;
 
   @override
   void initState() {
     super.initState();
     _textController = TextEditingController();
-    _textController.addListener(() {
-      log('Text changed: ${_textController.selection.baseOffset}');
-      final keyContext = stickyKey.currentContext;
-      if (keyContext != null) {
-        // widget is visible
-        final box = keyContext.findRenderObject() as RenderBox;
-        setState(() {
-          pos = box.localToGlobal(Offset(
-              0 - 110 / 2 + (_textController.selection.baseOffset * 9.7),
-              0 - box.size.height));
-          height = box.size.height;
-        });
-        log(pos.toString());
-      }
-    });
   }
 
   @override
@@ -97,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                       color: Colors.black.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(8)),
                   child: btf.TextField(
-                    key: stickyKey,
+                    key: globalKey,
                     selectionControls: BetterTextSelectionControls(),
                     controller: _textController,
                   ),

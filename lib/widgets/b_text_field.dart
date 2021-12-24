@@ -4,6 +4,7 @@
 
 import 'dart:ui' as ui show BoxHeightStyle, BoxWidthStyle;
 
+import 'package:better_textfield/controllers/magnifier_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
@@ -11,6 +12,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 export 'package:flutter/services.dart'
     show
@@ -1098,12 +1100,13 @@ class _TextFieldState extends State<TextField>
   //   }
   // }
 
-  @override
-  String? get restorationId => widget.restorationId;
+  // @override
+  // String? get restorationId => widget.restorationId;
 
   @override
   void dispose() {
     _effectiveFocusNode.removeListener(_handleFocusChanged);
+    context.read<MagnifierController>().enabled = false;
     _focusNode?.dispose();
     // _controller?.dispose();
     super.dispose();
@@ -1118,6 +1121,7 @@ class _TextFieldState extends State<TextField>
   bool _shouldShowSelectionHandles(SelectionChangedCause? cause) {
     // When the text field is activated by something that doesn't trigger the
     // selection overlay, we shouldn't show the handles either.
+    if (cause == SelectionChangedCause.drag) return true;
     if (!_selectionGestureDetectorBuilder.shouldShowSelectionToolbar)
       return false;
 
@@ -1132,7 +1136,7 @@ class _TextFieldState extends State<TextField>
 
     if (_effectiveController.text.isNotEmpty) return true;
 
-    return false;
+    return true;
   }
 
   void _handleFocusChanged() {
@@ -1144,7 +1148,15 @@ class _TextFieldState extends State<TextField>
 
   void _handleSelectionChanged(
       TextSelection selection, SelectionChangedCause? cause) {
+    context
+        .read<MagnifierController>()
+        .updatePosition(_effectiveController.selection.baseOffset);
     final bool willShowSelectionHandles = _shouldShowSelectionHandles(cause);
+    if (willShowSelectionHandles) {
+      context.read<MagnifierController>().enabled = true;
+    } else {
+      context.read<MagnifierController>().enabled = false;
+    }
     if (willShowSelectionHandles != _showSelectionHandles) {
       setState(() {
         _showSelectionHandles = willShowSelectionHandles;
@@ -1340,18 +1352,12 @@ class _TextFieldState extends State<TextField>
         selectionColor: focusNode.hasFocus ? selectionColor : null,
         selectionControls:
             widget.selectionEnabled ? textSelectionControls : null,
-        onChanged: (_) {
-          //TODO:: update magnifier position when text changes
-          if (widget.onChanged != null) widget.onChanged!(_);
-        },
+        onChanged: widget.onChanged,
         onSelectionChanged: _handleSelectionChanged,
         onEditingComplete: widget.onEditingComplete,
         onSubmitted: widget.onSubmitted,
         onAppPrivateCommand: widget.onAppPrivateCommand,
-        onSelectionHandleTapped: () {
-          //TODO:: toggle text magnifier
-          _handleSelectionHandleTapped();
-        },
+        onSelectionHandleTapped: _handleSelectionHandleTapped,
         inputFormatters: formatters,
         rendererIgnoresPointer: true,
         mouseCursor: MouseCursor.defer, // TextField will handle the cursor
