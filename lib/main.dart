@@ -1,5 +1,5 @@
 import 'package:better_textfield/controllers/magnifier_controller.dart';
-import 'package:better_textfield/views/home_page.dart';
+import 'package:better_textfield/views/new_home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         textTheme: GoogleFonts.robotoMonoTextTheme(),
       ),
       themeMode: ThemeMode.dark,
-      home: const HomePage(),
+      home: const NewHomePage(),
     );
   }
 }
