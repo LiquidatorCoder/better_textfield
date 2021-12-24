@@ -13,7 +13,10 @@ class NewHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     const String viewType = 'textfield';
-    const Map<String, dynamic> creationParams = <String, dynamic>{'text': 'a'};
+    Map<String, dynamic> creationParams = <String, dynamic>{
+      'text': 'a',
+      'textSize': Theme.of(context).textTheme.subtitle1?.fontSize ?? 10.0,
+    };
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.all(32),
@@ -42,7 +45,7 @@ class NewHomePage extends StatelessWidget {
               const Spacer(flex: 3),
               Container(
                 padding: const EdgeInsets.all(2),
-                height: 600,
+                height: 100,
                 decoration: BoxDecoration(
                     color: Colors.black.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(8)),
