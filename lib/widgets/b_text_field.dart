@@ -1053,6 +1053,7 @@ class _TextFieldState extends State<TextField>
 
   @override
   void didUpdateWidget(TextField oldWidget) {
+    context.read<MagnifierController>().maxLines = widget.maxLines??1;
     super.didUpdateWidget(oldWidget);
     if (widget.controller == null && oldWidget.controller != null) {
       // _createLocalController(oldWidget.controller!.value);

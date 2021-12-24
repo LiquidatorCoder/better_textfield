@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 class MagnifierService {
   bool enabled = false;
+  int maxLines = 1;
   double scale = 2;
   CustomPainter painter =
       const MagnifierPainter(strokeWidth: 0.5, color: Colors.black12);

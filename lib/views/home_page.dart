@@ -80,6 +80,7 @@ class _HomePageState extends State<HomePage> {
                       color: Colors.black.withOpacity(0.1),
                       borderRadius: BorderRadius.circular(8)),
                   child: btf.TextField(
+                    maxLines: 4,
                     key: globalKey,
                     selectionControls: BetterTextSelectionControls(),
                     controller: _textController,
