@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.abhay.better_textfield">
-   <application
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <application
         android:label="better_textfield"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
