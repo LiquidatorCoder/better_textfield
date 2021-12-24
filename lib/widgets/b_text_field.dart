@@ -10,7 +10,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 
-
 import 'package:flutter/material.dart';
 
 export 'package:flutter/services.dart'
@@ -899,10 +898,10 @@ class TextField extends StatefulWidget {
   }
 }
 
-class _TextFieldState extends State<TextField>    
+class _TextFieldState extends State<TextField>
     implements TextSelectionGestureDetectorBuilderDelegate, AutofillClient {
   TextEditingController get _effectiveController =>
-      widget.controller??TextEditingController();
+      widget.controller ?? TextEditingController();
 
   FocusNode? _focusNode;
   FocusNode get _effectiveFocusNode =>
@@ -1171,7 +1170,6 @@ class _TextFieldState extends State<TextField>
   void _handleSelectionHandleTapped() {
     if (_effectiveController.selection.isCollapsed) {
       _editableText!.toggleToolbar();
-      print('sladnalsndla');
     }
   }
 
@@ -1342,12 +1340,18 @@ class _TextFieldState extends State<TextField>
         selectionColor: focusNode.hasFocus ? selectionColor : null,
         selectionControls:
             widget.selectionEnabled ? textSelectionControls : null,
-        onChanged: widget.onChanged,
+        onChanged: (_) {
+          //TODO:: update magnifier position when text changes
+          if (widget.onChanged != null) widget.onChanged!(_);
+        },
         onSelectionChanged: _handleSelectionChanged,
         onEditingComplete: widget.onEditingComplete,
         onSubmitted: widget.onSubmitted,
         onAppPrivateCommand: widget.onAppPrivateCommand,
-        onSelectionHandleTapped: _handleSelectionHandleTapped,
+        onSelectionHandleTapped: () {
+          //TODO:: toggle text magnifier
+          _handleSelectionHandleTapped();
+        },
         inputFormatters: formatters,
         rendererIgnoresPointer: true,
         mouseCursor: MouseCursor.defer, // TextField will handle the cursor
