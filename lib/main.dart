@@ -1,17 +1,9 @@
-import 'package:better_textfield/controllers/magnifier_controller.dart';
-import 'package:better_textfield/views/new_home_page.dart';
+import 'package:better_textfield/views/home_page.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
 // Basic App for Textfield demonstration
 void main() {
-  runApp(
-    ChangeNotifierProvider<MagnifierController>(
-      create: (context) => MagnifierController(),
-      child: const MyApp(),
-    ),
-  );
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -23,10 +15,9 @@ class MyApp extends StatelessWidget {
       title: 'Better Textfield',
       darkTheme: ThemeData(
         primarySwatch: Colors.indigo,
-        textTheme: GoogleFonts.robotoMonoTextTheme(),
       ),
       themeMode: ThemeMode.dark,
-      home: NewHomePage(),
+      home: HomePage(),
     );
   }
 }
