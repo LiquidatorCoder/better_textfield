@@ -16,7 +16,7 @@ https://user-images.githubusercontent.com/42910433/147383853-7d2c0e40-8d5d-40ef-
 
 Here are some screenshots of the demo app:
 
-| NativeTextField 	| Magnifier (loupe) effect	| Native Text Toolbar 	|
+| Native Text Field 	| Magnifier (loupe) effect	| Native Text Toolbar 	|
 |--------------	|--------------	|--------------	|
 |  ![NativeTextField](doc/1.jpg) | ![Magnifier (loupe) effect](doc/2.jpg) 	| ![Native Text Toolbar](doc/3.jpg)  	|
 
