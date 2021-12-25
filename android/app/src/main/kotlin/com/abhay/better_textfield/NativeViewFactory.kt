@@ -5,10 +5,14 @@ import android.view.View
 import io.flutter.plugin.common.StandardMessageCodec
 import io.flutter.plugin.platform.PlatformView
 import io.flutter.plugin.platform.PlatformViewFactory
+import io.flutter.plugin.common.BinaryMessenger;
 
-class NativeViewFactory : PlatformViewFactory(StandardMessageCodec.INSTANCE) {
+class NativeViewFactory constructor(messenger:BinaryMessenger): PlatformViewFactory(StandardMessageCodec.INSTANCE) {
+    private val messenger: BinaryMessenger;
+    init{
+        this.messenger = messenger;
+    }
     override fun create(context: Context, viewId: Int, args: Any?): PlatformView {
-        val creationParams = args as Map<String?, Any?>?
-        return NativeView(context, viewId, creationParams)
+        return NativeView(context, viewId, messenger)
     }
 }

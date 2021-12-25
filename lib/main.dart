@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         textTheme: GoogleFonts.robotoMonoTextTheme(),
       ),
       themeMode: ThemeMode.dark,
-      home: const NewHomePage(),
+      home: NewHomePage(),
     );
   }
 }

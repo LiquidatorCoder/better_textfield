@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:better_textfield/controllers/native_text_field_controller.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -8,15 +9,11 @@ import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class NewHomePage extends StatelessWidget {
-  const NewHomePage({Key? key}) : super(key: key);
+  NewHomePage({Key? key}) : super(key: key);
+  final NativeTextViewController _controller = NativeTextViewController();
 
   @override
   Widget build(BuildContext context) {
-    const String viewType = 'textfield';
-    Map<String, dynamic> creationParams = <String, dynamic>{
-      'text': 'a',
-      'textSize': Theme.of(context).textTheme.subtitle1?.fontSize ?? 10.0,
-    };
     return Scaffold(
       body: Container(
         padding: const EdgeInsets.all(32),
@@ -50,7 +47,7 @@ class NewHomePage extends StatelessWidget {
                     color: Colors.black.withOpacity(0.1),
                     borderRadius: BorderRadius.circular(8)),
                 child: PlatformViewLink(
-                  viewType: viewType,
+                  viewType: 'NativeTextField',
                   surfaceFactory: (BuildContext context,
                       PlatformViewController controller) {
                     return AndroidViewSurface(
@@ -63,9 +60,8 @@ class NewHomePage extends StatelessWidget {
                   onCreatePlatformView: (PlatformViewCreationParams params) {
                     return PlatformViewsService.initSurfaceAndroidView(
                       id: params.id,
-                      viewType: viewType,
+                      viewType: 'NativeTextField',
                       layoutDirection: TextDirection.ltr,
-                      creationParams: creationParams,
                       creationParamsCodec: const StandardMessageCodec(),
                       onFocus: () {
                         params.onFocusChanged(true);
@@ -100,7 +96,13 @@ class NewHomePage extends StatelessWidget {
         child: IconButton(
           icon: const Icon(Icons.check),
           color: const Color(0xFF838aeb),
-          onPressed: () => log("Done!", name: "fab"),
+          onPressed: () {
+            // log("Done!", name: "fab");
+            // _controller.setText("Hello World!");
+            _controller.getText().then((String? text) {
+              log(text ?? '', name: "text");
+            });
+          },
         ),
       ),
     );
