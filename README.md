@@ -71,8 +71,7 @@ The structure of the `lib` directory of the app is as follows:
 │   main.dart [Main app file (starting point of the app)]
 │   
 ├───controllers
-│       native_text_field_controller.dart [NativeTextField controller, which handles the communication of data between the textfield and the flutter app]
-      
+│       native_text_field_controller.dart [NativeTextField controller, which handles the communication of data between the textfield and the flutter app] 
 └───views
         home_page.dart [Home page of the demo app]
 
