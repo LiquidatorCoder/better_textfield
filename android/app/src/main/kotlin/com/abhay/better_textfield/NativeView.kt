@@ -38,10 +38,12 @@ internal class NativeView(context: Context, id: Int, messenger: BinaryMessenger)
                 et.setText(call.argument<String>("text"))
                 result.success(true)
            }
-           if (call.method == "getText"){
+           else if (call.method == "getText"){
             result.success(et.text.toString())
             }
-            result.notImplemented()
+            else {
+                result.notImplemented()
+            }
           })
     }
 }
