@@ -24,24 +24,30 @@ internal class NativeView(context: Context, id: Int, messenger: BinaryMessenger)
     override fun dispose() {}
 
     init {
+        // Instantiate the method channel
         mc = MethodChannel(messenger, "NativeTextField")
         sv = ScrollView(context);
         ll = LinearLayout(context);
         ll.setOrientation(LinearLayout.VERTICAL);
         sv.addView(ll);
+        // Create a new EditText inside a LinearLayout
         et = EditText(context)
         et.setBackgroundColor(Color.TRANSPARENT)
         ll.addView(et);
+        // Registering the method call handler
         mc.setMethodCallHandler({
             call, result ->
            if (call.method == "setText"){
+               // Set text of EditText
                 et.setText(call.argument<String>("text"))
                 result.success(true)
            }
            else if (call.method == "getText"){
+               // Return text from EditText
             result.success(et.text.toString())
             }
             else {
+                // Not implemented
                 result.notImplemented()
             }
           })

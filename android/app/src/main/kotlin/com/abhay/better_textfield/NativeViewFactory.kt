@@ -9,6 +9,7 @@ import io.flutter.plugin.common.BinaryMessenger;
 
 class NativeViewFactory constructor(messenger:BinaryMessenger): PlatformViewFactory(StandardMessageCodec.INSTANCE) {
     private val messenger: BinaryMessenger;
+    // Passing messenger to the view
     init{
         this.messenger = messenger;
     }

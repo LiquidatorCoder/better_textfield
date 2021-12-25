@@ -17,7 +17,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.indigo,
       ),
       themeMode: ThemeMode.dark,
-      home: HomePage(),
+      home: HomePage(), // Home page of app
     );
   }
 }

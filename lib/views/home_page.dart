@@ -9,6 +9,7 @@ import 'package:flutter/services.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
+  // Controller to handle text or input from our native text field
   final NativeTextViewController _controller = NativeTextViewController();
 
   @override
@@ -39,13 +40,17 @@ class HomePage extends StatelessWidget {
                 ),
               ),
               const Spacer(flex: 3),
+              // Basic Native Textfield
               Container(
                 padding: const EdgeInsets.all(2),
                 height: 100,
                 decoration: BoxDecoration(
                     color: Colors.black.withOpacity(0.1),
-                    borderRadius: BorderRadius.circular(8)),
-                child: PlatformViewLink(
+                    borderRadius: BorderRadius.circular(12)),
+                child:
+                    // Hybrid composition android view
+                    PlatformViewLink(
+                  // Setting viewType
                   viewType: 'NativeTextField',
                   surfaceFactory: (BuildContext context,
                       PlatformViewController controller) {
@@ -56,6 +61,7 @@ class HomePage extends StatelessWidget {
                       hitTestBehavior: PlatformViewHitTestBehavior.opaque,
                     );
                   },
+                  // Handling focus events
                   onCreatePlatformView: (PlatformViewCreationParams params) {
                     return PlatformViewsService.initSurfaceAndroidView(
                       id: params.id,
@@ -77,6 +83,7 @@ class HomePage extends StatelessWidget {
           ),
         ),
       ),
+      // Call to action button which gets text input value
       floatingActionButton: Container(
         margin: const EdgeInsets.only(bottom: 16, right: 16),
         width: 44,
