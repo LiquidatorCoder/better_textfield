@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
         padding: const EdgeInsets.all(32),
         decoration: const BoxDecoration(
           gradient: LinearGradient(
-            colors: [Color(0xFF838aeb), Color(0xFF7c77cd)],
+            colors: [Color(0xFFa8e063), Color(0xFF56ab2f)],
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
           ),
@@ -45,7 +45,7 @@ class HomePage extends StatelessWidget {
                 padding: const EdgeInsets.all(2),
                 height: 100,
                 decoration: BoxDecoration(
-                    color: Colors.black.withOpacity(0.1),
+                    color: Colors.white.withOpacity(0.3),
                     borderRadius: BorderRadius.circular(12)),
                 child:
                     // Hybrid composition android view
@@ -101,7 +101,7 @@ class HomePage extends StatelessWidget {
         ),
         child: IconButton(
           icon: const Icon(Icons.check),
-          color: const Color(0xFF838aeb),
+          color: const Color(0xFF56ab2f),
           onPressed: () {
             // log("Done!", name: "fab");
             // _controller.setText("Hello World!");

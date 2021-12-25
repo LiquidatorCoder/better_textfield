@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Better Textfield',
       darkTheme: ThemeData(
-        primarySwatch: Colors.indigo,
+        primarySwatch: Colors.green,
       ),
       themeMode: ThemeMode.dark,
       home: HomePage(), // Home page of app
