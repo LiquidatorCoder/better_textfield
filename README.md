@@ -12,7 +12,7 @@ Better Textfield
 
 ## Demo
 
-// TODO: Add demo video
+https://user-images.githubusercontent.com/42910433/147383853-7d2c0e40-8d5d-40ef-b7f7-4349ae15b796.mp4
 
 Here are some screenshots of the demo app:
 
@@ -20,7 +20,8 @@ Here are some screenshots of the demo app:
 |--------------	|--------------	|--------------	|
 |  ![NativeTextField](doc/1.jpg) | ![Magnifier (loupe) effect](doc/2.jpg) 	| ![Native Text Toolbar](doc/3.jpg)  	|
 
-You can also access the demo app via this [link](https://github.com/LiquidatorCoder/better_textfield/releases) or by visiting `release\` directory in the repository.
+You can also access the demo app via this [link](https://github.com/LiquidatorCoder/better_textfield/releases) or by visiting `release` directory in the repository.
+
 ## Install
 The plugin package is under development.
 If you still want to use it in your app you can use the code from this repository.
@@ -31,7 +32,7 @@ If you still want to use it in your app you can use the code from this repositor
 - Magnifier (loupe) effect
 - Fixes all issues described here: [link](https://pastebin.com/iqnjMa1m)
 - Supports setting values for text
-_ Also supports retrieving input text via the text controller
+- Also supports retrieving input text via the text controller
 - Decent performance
 - Supports text selection and clipboard
 - Supports autocorrect
@@ -43,7 +44,8 @@ We generally use TextField and TextFormFields widgets for input field. If you no
 
 (Screen recording attached for reference for Reflectly app developed in Flutter.)
 
-//TODO: Add a link to the video of the issue.
+https://user-images.githubusercontent.com/42910433/147383865-c154c661-8e6e-4ebf-a5c5-c06e4c6dbf44.mp4
+
 
 ## Solution/Approach
 Since this problem only occurs in the TextField widget available in Flutter, we can use the Hybrid composition of AndroidView in Flutter to display a native textfield instead of a regular textfield.
